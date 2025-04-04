@@ -32,3 +32,63 @@ const dobrarNumeros1 = (num: number[]): number[] => num.map(n => n * 2);
 console.log(dobrarNumeros1([2,4,6,8]));
 console.log(dobrarNumeros([2,4,6,8]));
 
+// Exercicio 4
+
+type Funcionario = {
+    nome : string ;
+    cargo : string ;
+};
+
+const funcionarios : Funcionario [] = [
+    { nome : " Marcos ", cargo : " Desenvolvedor " } ,
+    { nome : " Fernanda ", cargo : " Gerente " } ,
+    { nome : " Carlos ", cargo : " Desenvolvedor " } ,
+    { nome : " Joana ", cargo : " Analista " }
+];
+
+const cargoDesejado : string = " Desenvolvedor ";
+
+const dev = funcionarios.filter(funcionario => funcionario.cargo === cargoDesejado);
+
+console.log(dev);
+
+// Exercicio 5
+
+type Aluno = {
+    nome : string ;
+    nota : number ;
+};
+
+const alunos : Aluno [] = [
+    { nome : " Alice ", nota : 8 } ,
+    { nome : " Bruno ", nota : 5 } ,
+    { nome : " Carla ", nota : 7 } ,
+    { nome : " Daniel ", nota : 6 }
+];
+
+function aprovados(alunos: Aluno[]): string[] {
+    return alunos.filter(aluno => aluno.nota >= 7).map(aluno => aluno.nome.trim());
+}
+
+console.log(aprovados(alunos));
+
+
+//Exercicio 6
+
+type Evento = {
+    nome : string ;
+    mes : string ;
+};
+
+const eventos : Evento [] = [
+    { nome : " Workshop TypeScript ", mes : " Janeiro " } ,
+    { nome : " Hackathon ", mes : " Março" } ,
+    { nome : " Conferência de IA", mes : " Janeiro " }
+];
+
+const mesDesejado : string = " Janeiro ";
+
+const filtro = eventos.filter(evento => evento.mes === mesDesejado);
+
+console.log(filtro);
+
