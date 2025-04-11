@@ -2,6 +2,7 @@ import { Aluno } from "./Aluno";
 import { Livro } from "./Livro";
 import { Carro } from "./Carro";
 import { Produto } from "./Produto";
+import { DataUtilis } from "./DataUtilis";
 
 const aluno1 = new Aluno("Pedro", "BT452584", 23);
 
@@ -27,3 +28,13 @@ carro1.mostrarCarro();
 const prod = new Produto ("Notebook", 3500);
 prod.mostrarInformacoes();
 
+// LAB 09
+
+const hoje = new Date () ;
+const dateutilis = new DataUtilis();
+
+console.log(dateutilis.formatarData(hoje, "dd/mm/yyyy"));
+console.log(dateutilis.diferencaEmDias(new Date("2025-04-01"), hoje));
+console.log(dateutilis.adicionarDias(hoje, 10));
+console.log(dateutilis.ehFinalDeSemana(hoje));
+console.log(dateutilis.converterParaISO(hoje));
