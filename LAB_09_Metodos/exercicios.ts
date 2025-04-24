@@ -34,10 +34,6 @@ class Exercicios{
     // • Remover todas as vogais
     //  faça isso ocorrer console . log ( Exercicio . contarOcorrencias (" banana ", "na") ) ; // 2
 
-    contarOcorrencias(a: string, b: string): number{
-
-    }
-
 
 
 }
