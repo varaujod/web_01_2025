@@ -22,7 +22,7 @@ function calcularMedia(notas: number[]): number {
     }
 }
 
-console.log(calcularMedia([]));
+calcularMedia([]);
 
 // Exercicio 2
 
@@ -39,7 +39,7 @@ function cadastrarUsuario (nome: string, idade: number){
     }
 }
 
-console.log(cadastrarUsuario("", 10));
+cadastrarUsuario("", 10);
 
 // Exercicio 3
 
@@ -54,7 +54,7 @@ function executarOperacao(){
     }
 }
 
-console.log(executarOperacao());
+executarOperacao();
 
 // Exercicio 4
 
