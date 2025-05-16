@@ -68,5 +68,4 @@ app.get("/api/jogadores", listarJogadores);
 app.get("/api/jogadores/:id", filtrarJogadorPorID);
 app.post("/api/jogadores", novoJogador);
 app.delete("/api/jogadores/:id", filtrarJogadorPorID);
-
 app.listen(PORT, () => console.log(`API em execução no URL: http://localhost:${PORT}`));
