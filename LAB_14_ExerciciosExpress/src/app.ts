@@ -9,6 +9,7 @@ app.use(express.json());
 export const jogadores: Jogador[] = [];
 
 function listarJogadores(req: Request, res: Response): void {
+    console.log(jogadores.length);
     res.json(jogadores);
 }
 
@@ -47,6 +48,7 @@ function novoJogador(req: Request, res: Response): void{
         }
 
         const jogador = new Jogador(id, data.nome, data.cpf, data.email, data.telefone, data.posicao)
+        jogadores.push(jogador);
         res.status(200).json(jogador);
     } catch(e: unknown){
         if(e instanceof Error){

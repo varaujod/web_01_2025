@@ -11,6 +11,7 @@ const PORT = process.env.PORT ?? 3000;
 app.use(express_1.default.json());
 exports.jogadores = [];
 function listarJogadores(req, res) {
+    console.log(exports.jogadores.length);
     res.json(exports.jogadores);
 }
 function filtrarJogadorPorID(req, res) {
@@ -44,6 +45,7 @@ function novoJogador(req, res) {
             throw new Error("Todas as informações não foram adicionadas, tente novamente!");
         }
         const jogador = new Jogador_1.Jogador(id, data.nome, data.cpf, data.email, data.telefone, data.posicao);
+        exports.jogadores.push(jogador);
         res.status(200).json(jogador);
     }
     catch (e) {
