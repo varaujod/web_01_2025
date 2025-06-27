@@ -1,17 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductService = void 0;
-const Product_1 = require("../model/Product");
 const ProductRepository_1 = require("../repository/ProductRepository");
 class ProductService {
-    productRepository = new ProductRepository_1.ProductRepository();
-    createTable() {
-        this.productRepository.createTable();
-    }
+    productRepository = ProductRepository_1.ProductRepository.getInstance();
     insertProduct(data) {
-        const newProduct = new Product_1.Product(undefined, data.name, data.price);
-        this.productRepository.insertProduct(newProduct);
-        return newProduct;
+        if (!data.name || !data.price) {
+            throw new Error('Favor informar os campos obrigatórios');
+        }
+        return this.productRepository.insertProduct(data.name, data.price);
     }
     deleteProduct(id) {
         return this.productRepository.deleteProduct(id);

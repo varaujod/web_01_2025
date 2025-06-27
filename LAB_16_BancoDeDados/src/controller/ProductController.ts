@@ -4,60 +4,52 @@ import { Request, Response } from "express";
 export class ProductController{
     private productService = new ProductService();
 
-    insertProduct(req: Request, res: Response): void{
+    async insertProduct(req: Request, res: Response){
         try{
-            const table = this.productService.createTable();
-            const product = this.productService.insertProduct(req.body);
-
-            console.log(table);
+            const product = await this.productService.insertProduct(req.body);
             res.status(201).json(product);
-        } catch(error: unknown){
-            let message: string = "Não foi possivel criar Product!"
-            if(error instanceof Error){
-                message = error.message
-            }
+        } catch(err){
+            const message = err instanceof Error ? err.message: 'Não foi possivel criar o Produto!';
             res.status(400).json({
                 message: message
-            })
+            });
         }
     }
 
-    deleteProduct(req: Request, res: Response): void{
+    async deleteProduct(req: Request, res: Response) {
         try{
             const id = Number(req.params.id);
-            const product = this.productService.deleteProduct(id);
+            const product = await this.productService.deleteProduct(id);
 
             res.status(200).json({
                 "status": "Produto deletado com sucesso!",
                 "product": product
             })
-        } catch(error: unknown){
-            let message: string = "Não foi possivel realizar a remoção";
-            if(error instanceof Error){
-                message = error.message;
-            }
+        } catch(err){
+            const message = err instanceof Error ? err.message: 'Não foi possivel deletar o Produto!';
             res.status(400).json({
                 message: message
-            })
+            });
         }
     }
 
-    updateProduct(req: Request, res: Response): void{
+    async updateProduct(req: Request, res: Response){
         try{
-            const successUpdate = this.productService.updateProduct({
+            const successUpdate = await this.productService.updateProduct({
                 id: Number(req.params.id),
                 update: req.body
             });
 
-            res.status(200).json(successUpdate);
-        } catch(error: unknown){
-            let message: string = "Não foi possivel realizar a atualização";
-            if(error instanceof Error){
-                message = error.message;
+            res.status(200).json({
+                "message": "Produto atualizado com sucesso!",
+                "product": successUpdate
             }
+                );
+        } catch(err){
+            const message = err instanceof Error ? err.message: 'Não foi possivel atualizar o Produto!';
             res.status(400).json({
                 message: message
-            })
+            });
         }
     }
 }

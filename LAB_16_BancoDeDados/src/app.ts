@@ -1,6 +1,5 @@
 import express from "express";
 import { ProductController } from "./controller/ProductController";
-import { ProductRepository } from "./repository/ProductRepository";
 
 const productController = new ProductController();
 
