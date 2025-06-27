@@ -86,4 +86,6 @@ export class ProductRepository{
             console.error("Este produto não foi atualizado, tente novamente!", err);
         }
     }
+
+    
 }

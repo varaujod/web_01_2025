@@ -11,9 +11,7 @@ export class ProductService{
 
     insertProduct(data: any): Product{
         const newProduct = new Product(undefined, data.name, data.price);
-
         this.productRepository.insertProduct(newProduct);
-
         return newProduct;
     }
 
