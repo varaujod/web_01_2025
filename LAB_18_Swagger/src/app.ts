@@ -1,19 +1,20 @@
 import express from "express";
-import { ProductController } from "./controller/ProductController";
-
-const productController = new ProductController();
+import { RegisterRoutes } from './route/routes';
+import { setupSwagger } from "./config/swagger";
 
 const app = express();
 
-const PORT = process.env.PORT ?? 8080;
+const PORT = 3040;
+
 app.use(express.json());
 
-function logInfo(){
-    console.log(`API em execucao no URL: http://localhost:${PORT}`);
-}
+const apiRouter = express.Router();
+RegisterRoutes(apiRouter);
 
-app.post("/market/product", productController.insertProduct.bind(productController));
-app.put("/market/product/:id", productController.updateProduct.bind(productController));
-app.delete("/market/product/:id", productController.deleteProduct.bind(productController));
+app.use('/api', apiRouter);
 
-app.listen(PORT, logInfo);
+RegisterRoutes(app);
+
+setupSwagger(app);
+
+app.listen(PORT, () => console.log ("API online na porta : " + PORT));

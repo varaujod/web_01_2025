@@ -1,18 +1,25 @@
 import { ProductService } from "../service/ProductService";
 import { Request, Response } from "express";
+import { Body, Controller, Delete, Get, Path, Post, Put, Query, Res, Route, Tags, TsoaResponse  } from "tsoa";
+import { BasicResponseDto } from "../model/BasicResponseDto";
+import { ProductDto } from "../model/ProductDto";
 
-export class ProductController{
-    private productService = new ProductService();
+@Route("product")
+@Tags("Product")
+export class ProductController extends Controller{
+    productService = new ProductService();
 
-    async insertProduct(req: Request, res: Response){
+    @Post()
+    async insertProduct(
+        @Body() dto: ProductDto,
+        @Res() fail: TsoaResponse<400, BasicResponseDto>,
+        @Res() success: TsoaResponse<201, BasicResponseDto>
+    ): Promise< |void>{
         try{
-            const product = await this.productService.insertProduct(req.body);
-            res.status(201).json(product);
-        } catch(err){
-            const message = err instanceof Error ? err.message: 'Não foi possivel criar o Produto!';
-            res.status(400).json({
-                message: message
-            });
+            const product = await this.productService.insertProduct(dto);
+            return success(201, new BasicResponseDto("Produto criado com sucesso!", product));
+        } catch(error: any){
+            return fail(400, new BasicResponseDto(error.message, undefined));
         }
     }
 
